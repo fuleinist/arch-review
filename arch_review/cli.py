@@ -101,6 +101,10 @@ def cmd_selftest(args) -> int:
     import os
     import unittest
 
+    # Guard against recursion: the CLI test suite invokes `selftest` in a
+    # subprocess, which would otherwise rediscover (and re-spawn) itself.
+    os.environ["ARCH_REVIEW_IN_SELFTEST"] = "1"
+
     tests_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests")
     if not os.path.isdir(tests_dir):
         print("tests/ directory not found next to the package.", file=sys.stderr)
