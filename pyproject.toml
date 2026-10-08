@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arch-review"
+version = "0.1.0"
+description = "Architecture-aware code review agent: cross-file anti-pattern detection, refactor suggestions, MCP server mode."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "fuleinist" }]
+requires-python = ">=3.9"
+keywords = ["code-review", "static-analysis", "anti-patterns", "mcp", "refactoring"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.scripts]
+arch-review = "arch_review.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["arch_review*"]
